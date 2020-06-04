@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-12 mt-3">
+    <div style="margin-top: 7px;">
+      <div style="float: left">
+        <span><b>Total: </b>{{currentPage + ' of ' + employeeArr.length}}</span>
+        <br/>
+        <span><b>page: </b>{{currentPage}}</span>
+      </div>
+      <div style="float: right">
+        <div class="btn-group" dropdown>
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                  aria-controls="dropdown-basic">
+            Per Page<span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><a class="dropdown-item" (click)="fnPerPage(5)">5</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="fnPerPage(10)">10</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="fnPerPage(15)">15</a></li>
+            <li role="menuitem"><a class="dropdown-item" (click)="fnPerPage(20)">20</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>SrNo</th>
+        <th>Full name</th>
+        <th>Email</th>
+        <th>ContactNo</th>
+        <th>Id</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let emp of returnedArray; let i= index">
+        <td>{{(itemsPerPage * (currentPage - 1)) + i + 1}}</td>
+        <td>{{emp.fullName}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.contactNo}}</td>
+        <td>{{emp.id}}</td>
+        <td><div>
+          <i class="fa fa-pencil-square-o mr-2" aria-hidden="true" (click)="childModal.openModal(childModal.emptemp);childModal.onEditEmployee(emp)"></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="openModal(template)" style="cursor: pointer"></i>
+        </div>
+          <app-employee-modal #childModal>
+          </app-employee-modal>
+          <ng-template #template>
+            <div class="modal-body text-center">
+              <p>Are you sure you want to delete user {{emp.fullName}} ?</p>
+              <button type="button" class="btn btn-default" (click)="onDeleteEmployee(emp.id); modalRef.hide()" >Yes</button>
+              <button type="button" class="btn btn-primary" (click)="modalRef.hide()">No</button>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-12 d-flex justify-content-center mt-3">
+    <pagination [totalItems]="employeeArr.length" (pageChanged)="pageChanged($event)" [maxSize]="4"></pagination>
+  </div>
+</div>
+

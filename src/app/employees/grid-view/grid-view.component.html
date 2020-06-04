@@ -1,0 +1,75 @@
+<div class="row mt-3">
+  <div class="col-12">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" style="font-size: unset !important">Total: {{currentPage}} of {{employeeArr.length}} | Page: {{currentPage}}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Name
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" (click)="fnSort('name')">Name</a>
+              <a class="dropdown-item" (click)="fnSort('email')">Email</a>
+              <a class="dropdown-item" (click)="fnSort('contactno')">ContactNo</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ascending
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+              <a class="dropdown-item" (click)="fnSortData('ascending')">Ascending</a>
+              <a class="dropdown-item" (click)="fnSortData('descending')">Descending</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Page Size
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+              <a class="dropdown-item" (click)="fnPerPage(5)">5</a>
+              <a class="dropdown-item" (click)="fnPerPage(10)">10</a>
+              <a class="dropdown-item" (click)="fnPerPage(15)">15</a>
+              <a class="dropdown-item" (click)="fnPerPage(20)">20</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-3 col-sm-6 col-md-4" *ngFor="let employee of returnedArray">
+    <div class="card employee-card mt-3">
+      <i class="fa fa-user mt-2" aria-hidden="true" style="font-size: 72px;"></i>
+      <div class="card-body">
+        <h4 class="card-title mb-0">{{employee.fullName}}</h4>
+        <p class="card-text mb-0">{{employee.email}}</p>
+        <p class="card-text mb-0">{{employee.contactNo}}</p>
+        <div>
+          <i class="fa fa-pencil-square-o mr-2" aria-hidden="true" (click)="childModal.openModal(childModal.emptemp);childModal.onEditEmployee(employee)"></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="openModal(template)" style="cursor: pointer"></i>
+        </div>
+        <app-employee-modal #childModal>
+        </app-employee-modal>
+        <ng-template #template>
+          <div class="modal-body text-center">
+            <p>Are you sure you want to delete user {{employee.fullName}} ?</p>
+            <button type="button" class="btn btn-default" (click)="onDeleteEmployee(employee.id); modalRef.hide()" >Yes</button>
+            <button type="button" class="btn btn-primary" (click)="modalRef.hide()">No</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-12 d-flex justify-content-center mt-3">
+    <pagination [totalItems]="employeeArr.length" (pageChanged)="pageChanged($event)" [maxSize]="4"></pagination>
+  </div>
+</div>
+

@@ -1,0 +1,46 @@
+<ng-template #emptemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="employeeForm">
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label>Full Name</label>
+          <input type="text" class="form-control" formControlName="fullName" [ngClass]="{ 'is-invalid': submitted && getFormControls.fullName.errors }"/>
+          <div *ngIf="submitted && getFormControls.fullName.errors" class="invalid-feedback">
+            <div *ngIf="getFormControls.fullName.errors.required">FullName is required.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && getFormControls.email.errors }"/>
+          <div *ngIf="submitted && getFormControls.email.errors" class="invalid-feedback">
+            <div *ngIf="getFormControls.email.errors.required">Email is required</div>
+            <div *ngIf="getFormControls.email.errors.email">Email is not valid.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label>Contact No</label>
+          <input type="text" class="form-control" formControlName="contactNo" [ngClass]="{ 'is-invalid': submitted && getFormControls.contactNo.errors }"/>
+          <div *ngIf="submitted && getFormControls.contactNo.errors" class="invalid-feedback">
+            <div *ngIf="getFormControls.contactNo.errors.required">Phone No is required</div>
+            <div *ngIf="getFormControls.contactNo.errors.pattern">Phone No must have 10 digits.</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary mr-1"
+                (click)="onAddEditEmployee();">Save</button>
+        <button class="btn btn-secondary" type="reset" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
