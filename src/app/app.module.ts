@@ -22,6 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {LoadingSpinner} from './shared/loading-spinner';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import {AuthGuardService} from './services/auth-guard/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()
   ],
-  providers: [LoginService, EmployeesService, AuthService],
+  providers: [LoginService, EmployeesService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

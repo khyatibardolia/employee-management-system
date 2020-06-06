@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {EmployeesComponent} from './employees/employees.component';
-import {LoginComponent} from './login/login.component';
 import {AuthComponent} from './auth/auth.component';
+import {AuthGuardService} from './services/auth-guard/auth-guard.service';
 
 
 const routes: Routes = [{
@@ -13,7 +13,7 @@ const routes: Routes = [{
       {path: ':currentPage', component: EmployeesComponent, children: [
           {path: ':currentPage/perPage', component: EmployeesComponent}
         ]},
-      ]},
+      ], canActivate : [AuthGuardService]},
   {path: 'auth' , component: AuthComponent},
   ];
 

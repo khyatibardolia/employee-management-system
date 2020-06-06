@@ -7,7 +7,7 @@ export class user {
 
   // we will always create a new user object when a user logs in..
   get token() {
-    if(!this._tokenexpirationDate || new Date() > this._tokenexpirationDate) {
+    if (!this._tokenexpirationDate || new Date() > this._tokenexpirationDate) {
       return null;
     }
     return this._token;

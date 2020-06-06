@@ -16,6 +16,7 @@ export interface AuthResponseData {
 @Injectable()
 export class AuthService {
 
+  authToken = '';
   constructor(private http: HttpClient) {
   }
 
@@ -66,6 +67,7 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
     const userData = new user(email, localId, token, expirationDate);
     this.user.next(userData);
+    this.authToken = token;
   }
 
   private handleError(errorRes: HttpErrorResponse) {
