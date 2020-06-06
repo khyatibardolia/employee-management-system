@@ -1,15 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AuthResponseData, AuthService} from './auth.service';
+import {AuthResponseData, AuthService} from '../services/auth/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/index';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit{
 
   constructor(private authService: AuthService,
               private toastr: ToastrService,
@@ -17,6 +17,9 @@ export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
 
+  ngOnInit() {
+    console.log('route-->', this.router.url);
+  }
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }

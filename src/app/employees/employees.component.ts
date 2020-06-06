@@ -2,7 +2,7 @@ import {Component, OnInit , ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EmployeesService} from './employees.service';
+import {EmployeesService} from '../services/employees/employees.service';
 
 @Component({
   selector: 'app-employees',

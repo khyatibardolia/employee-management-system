@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { EmployeesComponent } from './employees/employees.component';
-import {LoginService} from './login/login.service';
+import {LoginService} from './services/login/login.service';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { GridViewComponent } from './employees/grid-view/grid-view.component';
 import { ListViewComponent } from './employees/list-view/list-view.component';
-import {EmployeesService} from './employees/employees.service';
+import {EmployeesService} from './services/employees/employees.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -17,9 +17,11 @@ import { EmployeeModalComponent } from './modal/employee-modal/employee-modal.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthComponent } from './auth/auth.component';
-import {AuthService} from './auth/auth.service';
+import {AuthService} from './services/auth/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {LoadingSpinner} from './shared/loading-spinner';
+import { HeaderComponent } from './shared/header/header.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {LoadingSpinner} from './shared/loading-spinner';
     ListViewComponent,
     EmployeeModalComponent,
     AuthComponent,
-    LoadingSpinner
+    LoadingSpinner,
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

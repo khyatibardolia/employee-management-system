@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService, PageChangedEvent} from 'ngx-bootstrap';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {EmployeesService} from '../employees.service';
+import {EmployeesService} from '../../services/employees/employees.service';
 import {Subscription} from 'rxjs/index';
 
 

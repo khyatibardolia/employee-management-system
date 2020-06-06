@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {EmployeesService} from '../employees.service';
+import {EmployeesService} from '../../services/employees/employees.service';
 import {FormGroup} from '@angular/forms';
 import {BsModalRef, BsModalService, PageChangedEvent} from 'ngx-bootstrap';
 import {ActivatedRoute, Params, Router} from '@angular/router';

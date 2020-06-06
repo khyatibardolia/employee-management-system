@@ -10,7 +10,7 @@ export interface AuthResponseData {
   refreshToken: string;
   expiresIn: string;
   localId: string;
-  registered ?: boolean;
+  registered?: boolean;
 }
 
 @Injectable()
@@ -19,6 +19,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  // Firebase authentication
   // tap is an operator which allows us to perform some action without changing response
   // we emit a new user and next a new user when a user logs in.
   // store authenticated user as a subject, so when a user logs in or logs out a event will be emitted.
@@ -26,31 +27,35 @@ export class AuthService {
 
   // make a request
   signUp(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB4Z32Wwkv_aQ1NZtp0MdC-Bb3ailhiBo8',
+    return this.http.post<AuthResponseData>
+    ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB4Z32Wwkv_aQ1NZtp0MdC-Bb3ailhiBo8',
       {
         email: email,
         password: password,
         returnSecureToken: true
       }).pipe(catchError(this.handleError), tap((resData) => {
-        this.handleAuthentication(
-          resData.email,
-          resData.localId,
-          resData.idToken,
-          +resData.expiresIn)}))
+      this.handleAuthentication(
+        resData.email,
+        resData.localId,
+        resData.idToken,
+        +resData.expiresIn);
+    }));
   }
 
   onLogin(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB4Z32Wwkv_aQ1NZtp0MdC-Bb3ailhiBo8',
+    return this.http.post<AuthResponseData>
+    ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB4Z32Wwkv_aQ1NZtp0MdC-Bb3ailhiBo8',
       {
         email: email,
         password: password,
         returnSecureToken: true
       }).pipe(catchError(this.handleError), tap((resData) => {
-        this.handleAuthentication(
-          resData.email,
-          resData.localId,
-          resData.idToken,
-          +resData.expiresIn)}));
+      this.handleAuthentication(
+        resData.email,
+        resData.localId,
+        resData.idToken,
+        +resData.expiresIn);
+    }));
   }
 
 
