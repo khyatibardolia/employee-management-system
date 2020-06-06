@@ -18,9 +18,8 @@ export class AuthGuardService implements CanActivate {
       alert('You are not allowed to view this page');
       this.router.navigate(['/']);
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
 }

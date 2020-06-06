@@ -27,9 +27,7 @@ export class ListViewComponent implements OnInit {
 
   ngOnInit() {
     this.returnedArray = this.employeeArr.slice(0, 8);
-    this.router.queryParams.subscribe((params: Params) => {
-      this.currentPage = params['currentPage'];
-    });
+    this.currentPage = 1;
     console.log('cp-->>', this.currentPage);
     this.empChange = this.employeeService.employessChanged.subscribe((newEmp) => {
       this.returnedArray = newEmp;
@@ -54,7 +52,7 @@ export class ListViewComponent implements OnInit {
     this.page = page;
     this.itemsPerPage = page;
     this.route.navigate(['/employees'], {relativeTo: this.router, queryParams: {perPage: page}, queryParamsHandling: 'merge'});
-    const startItem = (this.currentPage - 1) * page;
+    const startItem = ((this.currentPage - 1) * page);
     const endItem = this.currentPage * page;
     this.returnedArray = this.employeeArr.slice() && this.employeeArr.slice(startItem, endItem);
   }

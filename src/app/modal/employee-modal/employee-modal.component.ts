@@ -31,7 +31,6 @@ export class EmployeeModalComponent implements OnInit {
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       contactNo: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      image: ['', [Validators.required]]
     });
     this.employeeData = this.employeeService.getAllEmployees();
   }

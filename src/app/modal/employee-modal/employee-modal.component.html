@@ -36,16 +36,6 @@
           </div>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <label>Upload Image</label>
-          <input type="file" class="form-control" formControlName="image"
-                 (change)="handleFileInput($event.target.files)" [ngClass]="{ 'is-invalid': submitted && getFormControls.image.errors }"/>
-          <div *ngIf="submitted && getFormControls.image.errors" class="invalid-feedback">
-            <div *ngIf="getFormControls.contactNo.image.required">Image No is required</div>
-          </div>
-        </div>
-      </div>
       <div class="text-center">
         <button class="btn btn-primary mr-1"
                 (click)="onAddEditEmployee();">Save</button>

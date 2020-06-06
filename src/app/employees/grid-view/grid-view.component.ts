@@ -38,9 +38,7 @@ export class GridViewComponent implements OnInit {
     console.log('modalRef', this.modalRef);
     console.log('emptemp', this.emptemp);
     this.returnedArray = this.employeeArr.slice(0, 8);
-    this.router.queryParams.subscribe((params: Params) => {
-      this.currentPage = params['currentPage'];
-    });
+    this.currentPage = 1;
     this.empChange = this.employeeService.employessChanged.subscribe((newEmp) => {
       console.log('grid-view subscribe', newEmp);
       this.returnedArray = newEmp;
@@ -64,7 +62,7 @@ export class GridViewComponent implements OnInit {
   fnPerPage(page: number) {
     this.page = page;
     this.route.navigate(['/employees'], {relativeTo: this.router, queryParams: {perPage: page}, queryParamsHandling: 'merge'});
-    const startItem = (this.currentPage - 1) * page;
+    const startItem = ((this.currentPage - 1) * page);
     const endItem = this.currentPage * page;
     this.returnedArray = this.employeeArr.slice() && this.employeeArr.slice(startItem, endItem);
   }
