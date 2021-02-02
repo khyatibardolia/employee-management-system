@@ -1,4 +1,4 @@
-# EmployeeCrudApp
+It's a simple employee management system where admin can login and mangage it's employees. It is built using Angular8
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
 
